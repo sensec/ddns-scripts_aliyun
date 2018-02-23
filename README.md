@@ -5,4 +5,6 @@
 建议安装: luci-app-ddns
 
 
-安装后在DDNS服务提供商一栏多出一个 aliyun.com，详情见论坛介绍帖“[分享]适用于OpenWRT/LEDE自带DDNS功能的阿里云脚本，完美嵌入” (http://www.right.com.cn/forum/thread-267501-1-1.html)
+安装后在DDNS服务提供商一栏多出一个 aliyun.com。
+
+详情见恩山论坛介绍帖 [适用于OpenWRT/LEDE自带DDNS功能的阿里云脚本，完美嵌入](http://www.right.com.cn/forum/thread-267501-1-1.html)
