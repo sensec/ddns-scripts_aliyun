@@ -34,6 +34,17 @@ __SEPARATOR="&"
 [ "$domain" == "${domain/@/}" ] && domain="${domain/./@}" # 未找到分隔符，兼容常用域名格式
 __HOST="${domain%%@*}"
 __DOMAIN="${domain#*@}"
+
+__DOMAIN_IDX=1
+if [ "$domain" != "${domain/|/}" ]
+then
+	__DOMAIN_IDX="${__DOMAIN#*|}"
+	__DOMAIN="${__DOMAIN%%|*}"
+	write_log 7 "发现配置域名索引位:$__DOMAIN_IDX"
+fi
+
+write_log 7 "当前域名索引位:$__DOMAIN_IDX"
+
 [ -z "$__HOST" -o "$__HOST" == "$__DOMAIN" ] && __HOST="@"
 
 # 设置记录类型
@@ -206,7 +217,7 @@ describe_domain() {
 	else
 		json_select "DomainRecords" >/dev/null 2>&1
 		json_select "Record" >/dev/null 2>&1
-		json_select 1 >/dev/null 2>&1
+		json_select $__DOMAIN_IDX >/dev/null 2>&1
 		json_get_var value "Locked"
 		[ $value -ne 0 ] && write_log 14 "解析记录被锁定"
 		json_get_var __RECID "RecordId"
