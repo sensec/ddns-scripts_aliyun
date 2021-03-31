@@ -197,7 +197,7 @@ enable_domain() {
 # 获取子域名解析记录列表
 describe_domain() {
 	local value type; local ret=0
-	aliyun_transfer "Action=DescribeSubDomainRecords" "SubDomain=${__HOST}.${__DOMAIN}" "Type=${__TYPE}" || write_log 14 "服务器通信失败"
+	aliyun_transfer "Action=DescribeSubDomainRecords" "SubDomain=${__HOST}.${__DOMAIN}" "Type=${__TYPE}" "DomainName=${__DOMAIN}" || write_log 14 "服务器通信失败"
 	json_cleanup; json_load "$(cat "$DATFILE" 2> /dev/null)" >/dev/null 2>&1
 	json_get_var value "TotalCount"
 	if [ $value -eq 0 ]; then
