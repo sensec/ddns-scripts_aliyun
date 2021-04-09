@@ -147,6 +147,7 @@ build_Request() {
 	string="Timestamp="$(date -u '+%Y-%m-%dT%H:%M:%SZ'); __URLARGS="$__URLARGS${__SEPARATOR}"$(percentEncode "${string%%=*}")"="$(percentEncode "${string#*=}")
 	string="SignatureVersion=1.0"; __URLARGS="$__URLARGS${__SEPARATOR}"$(percentEncode "${string%%=*}")"="$(percentEncode "${string#*=}")
 	string="SignatureNonce="$(cat '/proc/sys/kernel/random/uuid'); __URLARGS="$__URLARGS${__SEPARATOR}"$(percentEncode "${string%%=*}")"="$(percentEncode "${string#*=}")
+    string="DomainName=${__DOMAIN}"; __URLARGS="$__URLARGS${__SEPARATOR}"$(percentEncode "${string%%=*}")"="$(percentEncode "${string#*=}")
 
 	# 对请求参数进行排序，用于生成签名
 	string=$(echo -n "$__URLARGS" | sed 's/\'"${__SEPARATOR}"'/\n/g' | sort | sed ':label; N; s/\n/\'"${__SEPARATOR}"'/g; b label')
