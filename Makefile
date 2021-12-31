@@ -41,10 +41,6 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/update_aliyun_com.sh $(1)/usr/lib/ddns
 	$(INSTALL_DIR) $(1)/usr/share/ddns/default
         $(INSTALL_BIN) $(PKG_BUILD_DIR)/aliyun.com.json $(1)/usr/share/ddns/default
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/mm2231031-patch-1
 endef
 
 define Package/$(PKG_NAME)/postinst
